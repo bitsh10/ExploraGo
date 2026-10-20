@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>exploraGO - Descubre países y planifica tus viajes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <input type="checkbox" class="chk" id="menu-toggle" />
+
+  <input type="radio" class="chk" name="region" id="r-todas" checked />
+  <input type="radio" class="chk" name="region" id="r-europa" />
+  <input type="radio" class="chk" name="region" id="r-asia" />
+  <input type="radio" class="chk" name="region" id="r-america" />
+  <input type="radio" class="chk" name="region" id="r-oceania" />
+  <input type="radio" class="chk" name="region" id="r-africa" />
+
+  <input type="checkbox" class="chk fav-check" id="fav-espana" />
+  <input type="checkbox" class="chk fav-check" id="fav-francia" />
+  <input type="checkbox" class="chk fav-check" id="fav-japon" />
+  <input type="checkbox" class="chk fav-check" id="fav-colombia" />
+  <input type="checkbox" class="chk fav-check" id="fav-australia" />
+  <input type="checkbox" class="chk fav-check" id="fav-egipto" />
+
+  <nav class="nav">
+    <div class="contenedor nav-box">
+      <a href="#inicio" class="logo">
+        <img src="logotipo.png" alt="exploraGO Logo" class="logo-img" />
+        <span class="logo-txt">Explora<span class="logo-go">Go</span></span>
+      </a>
+
+      <label class="btn-hamb" for="menu-toggle" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <ul class="nav-links" id="nav-links">
+        <li><a id="nav-inicio" href="#inicio">Inicio</a></li>
+        <li><a id="nav-explorar" href="#explorar">Explorar</a></li>
+        <li><a id="nav-favoritos" href="#favoritos">Favoritos (<span id="cant-favs"></span>)</a></li>
+        <li><a id="nav-planificador" href="#planificador">Planificador</a></li>
+        <li><a id="nav-itinerarios" href="#itinerarios">Mis Itinerarios</a></li>
+        <li><a id="nav-acerca" href="#acerca">Acerca de</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main class="contenedor" style="margin-top: 1.5rem;">
+
+    <section id="inicio" class="vista">
+      <div class="hero">
+        <h1>Descubre tu próximo destino en el mundo</h1>
+        <p>Explora países, conoce la mejor época para viajar y organiza tus itinerarios con exploraGO.</p>
+        <div class="box-buscar">
+          <span>¿A dónde quieres ir? Ej. España, Japón...</span>
+          <a class="btn btn-primario" href="#explorar">Explorar destinos</a>
+        </div>
+      </div>
+
+      <h2 class="titulo-sec">Destinos Destacados</h2>
+      <div class="grid-paises">
+        <article class="card europa">
+          <img class="card-img" src="https://flagcdn.com/w320/es.png" alt="Bandera de España" />
+          <label class="btn-ico btn-fav" for="fav-espana" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">España</h3>
+            <p class="card-info">Capital: Madrid</p>
+            <p class="card-info">Región: Europa</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-espana">Ver detalles</a></div>
+          </div>
+        </article>
+        <article class="card asia">
+          <img class="card-img" src="https://flagcdn.com/w320/jp.png" alt="Bandera de Japón" />
+          <label class="btn-ico btn-fav" for="fav-japon" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">Japón</h3>
+            <p class="card-info">Capital: Tokio</p>
+            <p class="card-info">Región: Asia</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-japon">Ver detalles</a></div>
+          </div>
+        </article>
+        <article class="card america">
+          <img class="card-img" src="https://flagcdn.com/w320/co.png" alt="Bandera de Colombia" />
+          <label class="btn-ico btn-fav" for="fav-colombia" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">Colombia</h3>
+            <p class="card-info">Capital: Bogotá</p>
+            <p class="card-info">Región: América</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-colombia">Ver detalles</a></div>
+          </div>
+        </article>
+      </div>
+
+      <section class="como-funciona">
+        <h2 class="titulo-sec" style="text-align: center;">¿Cómo funciona exploraGO?</h2>
+        <div class="grid-pasos">
+          <div class="card-paso">
+            <div class="ico-paso">🌍</div>
+            <h3>1. Explora</h3>
+            <p style="color: var(--txt-gris); font-size: 0.9rem; margin-top: 0.5rem;">Filtra por continentes o regiones y consulta información geográfica completa.</p>
+          </div>
+          <div class="card-paso">
+            <div class="ico-paso">❤️</div>
+            <h3>2. Guarda</h3>
+            <p style="color: var(--txt-gris); font-size: 0.9rem; margin-top: 0.5rem;">Crea tu lista de deseos guardando tus países y destinos favoritos.</p>
+          </div>
+          <div class="card-paso">
+            <div class="ico-paso">📅</div>
+            <h3>3. Planifica</h3>
+            <p style="color: var(--txt-gris); font-size: 0.9rem; margin-top: 0.5rem;">Diseña itinerarios personalizados día por día y ajusta tu presupuesto.</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="banner-cta">
+        <h2>¿Listo para tu próxima aventura?</h2>
+        <p style="margin: 0.5rem 0 1.5rem 0;">Comienza hoy mismo a organizar el viaje de tus sueños.</p>
+        <a class="btn btn-primario" href="#planificador">Crear mi plan de viaje</a>
+      </div>
+    </section>
+
+    <section id="explorar" class="vista">
+      <h2 class="titulo-sec">Explorar Destinos</h2>
+      <div class="box-filtros">
+        <div class="chips">
+          <label class="chip" for="r-todas">Todas las Regiones</label>
+          <label class="chip" for="r-europa">Europa</label>
+          <label class="chip" for="r-asia">Asia</label>
+          <label class="chip" for="r-america">América</label>
+          <label class="chip" for="r-oceania">Oceanía</label>
+          <label class="chip" for="r-africa">África</label>
+        </div>
+      </div>
+
+      <div class="grid-paises grid-explorar">
+        <article class="card europa">
+          <img class="card-img" src="https://flagcdn.com/w320/es.png" alt="Bandera de España" />
+          <label class="btn-ico btn-fav" for="fav-espana" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">España</h3>
+            <p class="card-info">Capital: Madrid</p>
+            <p class="card-info">Región: Europa</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-espana">Ver detalles</a></div>
+          </div>
+        </article>
+        <article class="card europa">
+          <img class="card-img" src="https://flagcdn.com/w320/fr.png" alt="Bandera de Francia" />
+          <label class="btn-ico btn-fav" for="fav-francia" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">Francia</h3>
+            <p class="card-info">Capital: París</p>
+            <p class="card-info">Región: Europa</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-francia">Ver detalles</a></div>
+          </div>
+        </article>
+        <article class="card asia">
+          <img class="card-img" src="https://flagcdn.com/w320/jp.png" alt="Bandera de Japón" />
+          <label class="btn-ico btn-fav" for="fav-japon" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">Japón</h3>
+            <p class="card-info">Capital: Tokio</p>
+            <p class="card-info">Región: Asia</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-japon">Ver detalles</a></div>
+          </div>
+        </article>
+        <article class="card america">
+          <img class="card-img" src="https://flagcdn.com/w320/co.png" alt="Bandera de Colombia" />
+          <label class="btn-ico btn-fav" for="fav-colombia" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">Colombia</h3>
+            <p class="card-info">Capital: Bogotá</p>
+            <p class="card-info">Región: América</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-colombia">Ver detalles</a></div>
+          </div>
+        </article>
+        <article class="card oceania">
+          <img class="card-img" src="https://flagcdn.com/w320/au.png" alt="Bandera de Australia" />
+          <label class="btn-ico btn-fav" for="fav-australia" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">Australia</h3>
+            <p class="card-info">Capital: Canberra</p>
+            <p class="card-info">Región: Oceanía</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-australia">Ver detalles</a></div>
+          </div>
+        </article>
+        <article class="card africa">
+          <img class="card-img" src="https://flagcdn.com/w320/eg.png" alt="Bandera de Egipto" />
+          <label class="btn-ico btn-fav" for="fav-egipto" title="Guardar en favoritos"></label>
+          <div class="card-body">
+            <h3 class="card-txt">Egipto</h3>
+            <p class="card-info">Capital: El Cairo</p>
+            <p class="card-info">Región: África</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-egipto">Ver detalles</a></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="detalle-espana" class="vista">
+      <a class="btn btn-secundario btn-volver" href="#explorar">← Volver a Explorar</a>
+      <div class="box-detalle">
+        <img class="img-detalle" src="https://flagcdn.com/w320/es.png" alt="Bandera de España" />
+        <div class="info-detalle">
+          <h2 class="titulo-sec">España</h2>
+          <p class="card-info">País del sur de Europa, famoso por su gastronomía, su historia y sus playas.</p>
+          <div class="grid-info">
+            <div class="item-info"><span>Capital</span><strong>Madrid</strong></div>
+            <div class="item-info"><span>Región</span><strong>Europa</strong></div>
+            <div class="item-info"><span>Población</span><strong>≈ 48 millones</strong></div>
+            <div class="item-info"><span>Idioma</span><strong>Español</strong></div>
+            <div class="item-info"><span>Moneda</span><strong>Euro (EUR)</strong></div>
+          </div>
+          <a class="btn btn-acento" href="#planificador">Planificar viaje</a>
+        </div>
+      </div>
+      <div class="card-clima">
+        <h3>Mejor época para viajar</h3>
+        <div class="grid-clima"><div class="dia-clima">Primavera (abril–junio) y otoño (septiembre–octubre): clima templado.</div></div>
+      </div>
+    </section>
+
+    <section id="detalle-francia" class="vista">
+      <a class="btn btn-secundario btn-volver" href="#explorar">← Volver a Explorar</a>
+      <div class="box-detalle">
+        <img class="img-detalle" src="https://flagcdn.com/w320/fr.png" alt="Bandera de Francia" />
+        <div class="info-detalle">
+          <h2 class="titulo-sec">Francia</h2>
+          <p class="card-info">Destino icónico de Europa occidental, con arte, moda, castillos y alta cocina.</p>
+          <div class="grid-info">
+            <div class="item-info"><span>Capital</span><strong>París</strong></div>
+            <div class="item-info"><span>Región</span><strong>Europa</strong></div>
+            <div class="item-info"><span>Población</span><strong>≈ 68 millones</strong></div>
+            <div class="item-info"><span>Idioma</span><strong>Francés</strong></div>
+            <div class="item-info"><span>Moneda</span><strong>Euro (EUR)</strong></div>
+          </div>
+          <a class="btn btn-acento" href="#planificador">Planificar viaje</a>
+        </div>
+      </div>
+      <div class="card-clima">
+        <h3>Mejor época para viajar</h3>
+        <div class="grid-clima"><div class="dia-clima">Primavera y verano (mayo–septiembre): días largos y buen clima.</div></div>
+      </div>
+    </section>
+
+    <section id="detalle-japon" class="vista">
+      <a class="btn btn-secundario btn-volver" href="#explorar">← Volver a Explorar</a>
+      <div class="box-detalle">
+        <img class="img-detalle" src="https://flagcdn.com/w320/jp.png" alt="Bandera de Japón" />
+        <div class="info-detalle">
+          <h2 class="titulo-sec">Japón</h2>
+          <p class="card-info">Isla de Asia oriental donde conviven tradición milenaria y tecnología de vanguardia.</p>
+          <div class="grid-info">
+            <div class="item-info"><span>Capital</span><strong>Tokio</strong></div>
+            <div class="item-info"><span>Región</span><strong>Asia</strong></div>
+            <div class="item-info"><span>Población</span><strong>≈ 124 millones</strong></div>
+            <div class="item-info"><span>Idioma</span><strong>Japonés</strong></div>
+            <div class="item-info"><span>Moneda</span><strong>Yen (JPY)</strong></div>
+          </div>
+          <a class="btn btn-acento" href="#planificador">Planificar viaje</a>
+        </div>
+      </div>
+      <div class="card-clima">
+        <h3>Mejor época para viajar</h3>
+        <div class="grid-clima"><div class="dia-clima">Primavera (cerezos en flor) y otoño (hojas rojas).</div></div>
+      </div>
+    </section>
+
+    <section id="detalle-colombia" class="vista">
+      <a class="btn btn-secundario btn-volver" href="#explorar">← Volver a Explorar</a>
+      <div class="box-detalle">
+        <img class="img-detalle" src="https://flagcdn.com/w320/co.png" alt="Bandera de Colombia" />
+        <div class="info-detalle">
+          <h2 class="titulo-sec">Colombia</h2>
+          <p class="card-info">País de Sudamérica con Caribe, Andes, selva y una gran diversidad cultural.</p>
+          <div class="grid-info">
+            <div class="item-info"><span>Capital</span><strong>Bogotá</strong></div>
+            <div class="item-info"><span>Región</span><strong>América</strong></div>
+            <div class="item-info"><span>Población</span><strong>≈ 52 millones</strong></div>
+            <div class="item-info"><span>Idioma</span><strong>Español</strong></div>
+            <div class="item-info"><span>Moneda</span><strong>Peso colombiano (COP)</strong></div>
+          </div>
+          <a class="btn btn-acento" href="#planificador">Planificar viaje</a>
+        </div>
+      </div>
+      <div class="card-clima">
+        <h3>Mejor época para viajar</h3>
+        <div class="grid-clima"><div class="dia-clima">Diciembre a marzo: temporada seca en gran parte del país.</div></div>
+      </div>
+    </section>
+
+    <section id="detalle-australia" class="vista">
+      <a class="btn btn-secundario btn-volver" href="#explorar">← Volver a Explorar</a>
+      <div class="box-detalle">
+        <img class="img-detalle" src="https://flagcdn.com/w320/au.png" alt="Bandera de Australia" />
+        <div class="info-detalle">
+          <h2 class="titulo-sec">Australia</h2>
+          <p class="card-info">País-continente de Oceanía, conocido por su fauna única, sus playas y el Gran Arrecife.</p>
+          <div class="grid-info">
+            <div class="item-info"><span>Capital</span><strong>Canberra</strong></div>
+            <div class="item-info"><span>Región</span><strong>Oceanía</strong></div>
+            <div class="item-info"><span>Población</span><strong>≈ 27 millones</strong></div>
+            <div class="item-info"><span>Idioma</span><strong>Inglés</strong></div>
+            <div class="item-info"><span>Moneda</span><strong>Dólar australiano (AUD)</strong></div>
+          </div>
+          <a class="btn btn-acento" href="#planificador">Planificar viaje</a>
+        </div>
+      </div>
+      <div class="card-clima">
+        <h3>Mejor época para viajar</h3>
+        <div class="grid-clima"><div class="dia-clima">Septiembre–noviembre y marzo–mayo: temperaturas agradables.</div></div>
+      </div>
+    </section>
+
+    <section id="detalle-egipto" class="vista">
+      <a class="btn btn-secundario btn-volver" href="#explorar">← Volver a Explorar</a>
+      <div class="box-detalle">
+        <img class="img-detalle" src="https://flagcdn.com/w320/eg.png" alt="Bandera de Egipto" />
+        <div class="info-detalle">
+          <h2 class="titulo-sec">Egipto</h2>
+          <p class="card-info">Cuna de una de las civilizaciones más antiguas, con pirámides, templos y el río Nilo.</p>
+          <div class="grid-info">
+            <div class="item-info"><span>Capital</span><strong>El Cairo</strong></div>
+            <div class="item-info"><span>Región</span><strong>África</strong></div>
+            <div class="item-info"><span>Población</span><strong>≈ 115 millones</strong></div>
+            <div class="item-info"><span>Idioma</span><strong>Árabe</strong></div>
+            <div class="item-info"><span>Moneda</span><strong>Libra egipcia (EGP)</strong></div>
+          </div>
+          <a class="btn btn-acento" href="#planificador">Planificar viaje</a>
+        </div>
+      </div>
+      <div class="card-clima">
+        <h3>Mejor época para viajar</h3>
+        <div class="grid-clima"><div class="dia-clima">Octubre a abril: temperaturas más suaves.</div></div>
+      </div>
+    </section>
+
+    <section id="favoritos" class="vista">
+      <h2 class="titulo-sec">Mis Destinos Favoritos</h2>
+      <p class="msg-vacio">Aún no tienes favoritos. Ve a Explorar y toca el corazón 🤍 de un país.</p>
+      <div class="grid-paises">
+        <article class="card fav-card" id="card-fav-espana">
+          <img class="card-img" src="https://flagcdn.com/w320/es.png" alt="Bandera de España" />
+          <label class="btn-ico btn-fav" for="fav-espana" title="Quitar de favoritos"></label>
+          <div class="card-body"><h3 class="card-txt">España</h3><p class="card-info">Capital: Madrid</p><p class="card-info">Región: Europa</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-espana">Ver detalles</a></div></div>
+        </article>
+        <article class="card fav-card" id="card-fav-francia">
+          <img class="card-img" src="https://flagcdn.com/w320/fr.png" alt="Bandera de Francia" />
+          <label class="btn-ico btn-fav" for="fav-francia" title="Quitar de favoritos"></label>
+          <div class="card-body"><h3 class="card-txt">Francia</h3><p class="card-info">Capital: París</p><p class="card-info">Región: Europa</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-francia">Ver detalles</a></div></div>
+        </article>
+        <article class="card fav-card" id="card-fav-japon">
+          <img class="card-img" src="https://flagcdn.com/w320/jp.png" alt="Bandera de Japón" />
+          <label class="btn-ico btn-fav" for="fav-japon" title="Quitar de favoritos"></label>
+          <div class="card-body"><h3 class="card-txt">Japón</h3><p class="card-info">Capital: Tokio</p><p class="card-info">Región: Asia</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-japon">Ver detalles</a></div></div>
+        </article>
+        <article class="card fav-card" id="card-fav-colombia">
+          <img class="card-img" src="https://flagcdn.com/w320/co.png" alt="Bandera de Colombia" />
+          <label class="btn-ico btn-fav" for="fav-colombia" title="Quitar de favoritos"></label>
+          <div class="card-body"><h3 class="card-txt">Colombia</h3><p class="card-info">Capital: Bogotá</p><p class="card-info">Región: América</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-colombia">Ver detalles</a></div></div>
+        </article>
+        <article class="card fav-card" id="card-fav-australia">
+          <img class="card-img" src="https://flagcdn.com/w320/au.png" alt="Bandera de Australia" />
+          <label class="btn-ico btn-fav" for="fav-australia" title="Quitar de favoritos"></label>
+          <div class="card-body"><h3 class="card-txt">Australia</h3><p class="card-info">Capital: Canberra</p><p class="card-info">Región: Oceanía</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-australia">Ver detalles</a></div></div>
+        </article>
+        <article class="card fav-card" id="card-fav-egipto">
+          <img class="card-img" src="https://flagcdn.com/w320/eg.png" alt="Bandera de Egipto" />
+          <label class="btn-ico btn-fav" for="fav-egipto" title="Quitar de favoritos"></label>
+          <div class="card-body"><h3 class="card-txt">Egipto</h3><p class="card-info">Capital: El Cairo</p><p class="card-info">Región: África</p>
+            <div class="card-acciones"><a class="btn btn-primario" href="#detalle-egipto">Ver detalles</a></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section id="planificador" class="vista">
+      <div class="box-planificador">
+        <h2 class="titulo-sec" style="text-align: center; margin-bottom: 1.5rem;">Planificar Nuevo Viaje</h2>
+        <form id="form-planificador" action="#itinerarios" method="get">
+          <div class="campo">
+            <label for="viaje-nombre">Nombre del Viaje</label>
+            <input type="text" id="viaje-nombre" name="nombre" class="input-ctrl" placeholder="Ej. Eurotrip Verano 2026" required />
+          </div>
+
+          <div class="campo">
+            <label for="viaje-destino">Destino Principal</label>
+            <select id="viaje-destino" name="destino" class="input-ctrl" required>
+              <option value="">Selecciona un destino</option>
+              <option>España</option>
+              <option>Francia</option>
+              <option>Japón</option>
+              <option>Colombia</option>
+              <option>Australia</option>
+              <option>Egipto</option>
+            </select>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="campo">
+              <label for="viaje-inicio">Fecha de Inicio</label>
+              <input type="date" id="viaje-inicio" name="inicio" class="input-ctrl" required />
+            </div>
+            <div class="campo">
+              <label for="viaje-fin">Fecha de Fin</label>
+              <input type="date" id="viaje-fin" name="fin" class="input-ctrl" required />
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="campo">
+              <label for="viaje-viajeros">Número de Viajeros</label>
+              <input type="number" id="viaje-viajeros" name="viajeros" class="input-ctrl" min="1" value="1" required />
+            </div>
+            <div class="campo">
+              <label for="viaje-presupuesto">Presupuesto (USD)</label>
+              <input type="number" id="viaje-presupuesto" name="presupuesto" class="input-ctrl" min="0" placeholder="Ej. 1500" required />
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="viaje-notas">Comentarios / Notas</label>
+            <textarea id="viaje-notas" name="notas" class="input-ctrl" rows="3" placeholder="Reservas de vuelo, hoteles, objetivos de viaje..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primario" style="width: 100%; margin-top: 1rem;">Guardar e Itinerario</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="itinerarios" class="vista">
+      <h2 class="titulo-sec">Mis Itinerarios</h2>
+      <div class="box-itinerario">
+        <h3>Eurotrip Verano 2026 (ejemplo)</h3>
+        <p class="card-info">Destino: España · 2 viajeros · Presupuesto: USD 1.500</p>
+
+        <div class="box-dia">
+          <h4>Día 1 – Llegada a Madrid</h4>
+          <ul class="lista-actividades">
+            <li class="item-actividad"><span>Check-in en el hotel</span><strong>2:00 PM</strong></li>
+            <li class="item-actividad"><span>Paseo por la Puerta del Sol</span><strong>5:00 PM</strong></li>
+            <li class="item-actividad"><span>Cena de tapas</span><strong>9:00 PM</strong></li>
+          </ul>
+        </div>
+
+        <div class="box-dia">
+          <h4>Día 2 – Arte y cultura</h4>
+          <ul class="lista-actividades">
+            <li class="item-actividad"><span>Museo del Prado</span><strong>10:00 AM</strong></li>
+            <li class="item-actividad"><span>Parque del Retiro</span><strong>3:00 PM</strong></li>
+            <li class="item-actividad"><span>Palacio Real</span><strong>6:00 PM</strong></li>
+          </ul>
+        </div>
+      </div>
+      <a class="btn btn-primario" href="#planificador">+ Crear nuevo viaje</a>
+    </section>
+
+    <section id="acerca" class="vista">
+      <div class="box-planificador" style="max-width: 800px;">
+        <h2 class="titulo-sec">Sobre exploraGO</h2>
+        <p style="margin-bottom: 1rem; color: var(--txt-gris);">
+          <strong>exploraGO</strong> es una plataforma web diseñada para facilitar la búsqueda de destinos turísticos y la organización detallada de tus viajes.
+        </p>
+        <h3 style="margin: 1.5rem 0 0.5rem 0;">Funcionalidades Principales</h3>
+        <ul style="margin-left: 1.25rem; color: var(--txt-gris); display: flex; flex-direction: column; gap: 0.5rem;">
+          <li>Explorador de países con fichas geográficas y filtro por región.</li>
+          <li>Recomendación de la mejor época para viajar a cada destino.</li>
+          <li>Lista de destinos favoritos con contador en el menú.</li>
+          <li>Formulario de planificación y vista de itinerarios día por día.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="contenedor">
+      <div class="grid-footer">
+        <div>
+          <a href="#inicio" class="logo">
+            <span class="logo-txt" style="color: var(--blanco);">Explora<span class="logo-go">Go</span></span>
+          </a>
+          <p style="margin-top: 0.75rem;">Tu plataforma confiable para descubrir el mundo y planificar cada paso de tu aventura.</p>
+        </div>
+        <div>
+          <h4>Navegación</h4>
+          <a href="#inicio">Inicio</a>
+          <a href="#explorar">Explorar</a>
+          <a href="#favoritos">Favoritos</a>
+          <a href="#planificador">Planificador</a>
+          <a href="#itinerarios">Mis Itinerarios</a>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <p>Email: soportes@explorago.com</p>
+          <p>Teléfono +57 300 000 000 0</p>
+        </div>
+      </div>
+      <div class="copy-footer">
+        &copy; 2026 exploraGO.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
